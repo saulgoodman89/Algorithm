@@ -15,6 +15,19 @@
 
 	출력
 	첫째 줄에 상근이가 창영이의 방법을 사용할 때, 설정해야 하는 알람 시간을 출력한다. (입력과 같은 형태로 출력하면 된다.)
+
+	반례 
+	입력         정답
+	0 0          23 15
+	0 44         23 59
+	0 45         0 0
+	0 46         0 1
+	1 40         0 55
+	16 44        15 59
+	16 45        16 0
+	16 46        16 1
+	17 0         16 15
+	23 59        23 14
 */
 
 
@@ -33,6 +46,10 @@ int main() {
 		hourMin = hourMin-early_time;
 		hour = hourMin / 3600;
 		min = hourMin % 3600 / 60;
+		if(hour == 24)
+			hour=0;
+		if(min == 0)
+			min=0;
 		printf("%d %d \n",hour,min);
 	}else {
 		printf("Check Time Format");
