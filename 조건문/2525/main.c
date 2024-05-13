@@ -1,6 +1,7 @@
 #include<stdio.h>
 /*
-KOI 전자에서는 건강에 좋고 맛있는 훈제오리구이 요리를 간편하게 만드는 인공지능 오븐을 개발하려고 한다. 인공지능 오븐을 사용하는 방법은 적당한 양의 오리 훈제 재료를 인공지능 오븐에 넣으면 된다. 그러면 인공지능 오븐은 오븐구이가 끝나는 시간을 분 단위로 자동적으로 계산한다.
+KOI 전자에서는 건강에 좋고 맛있는 훈제오리구이 요리를 간편하게 만드는 인공지능 오븐을 개발하려고 한다. 인공지능 오븐을 사용하는 방법은 적당한 양의 오리 훈제 재료를 인공지능 오븐에 넣으면 된다.
+ 그러면 인공지능 오븐은 오븐구이가 끝나는 시간을 분 단위로 자동적으로 계산한다.
 
 또한, KOI 전자의 인공지능 오븐 앞면에는 사용자에게 훈제오리구이 요리가 끝나는 시각을 알려 주는 디지털 시계가 있다.
 
@@ -15,24 +16,32 @@ KOI 전자에서는 건강에 좋고 맛있는 훈제오리구이 요리를 간�
  현재시간을 0 0 포맷으로 표시
  0 이상 1000 이하의 조리시간을 입력 받는다. 
 
+첫 째줄에 현재시간 입력받고
+두 번째 줄에 조리시간을 입력 받는다. 
+
+첫 째줄에 입력받은 시간을 초로 변경
+두 번째 줄에 입력받은 시간을 초로 변경
+두 시간을 더한 뒤 
+시간 / 초로 환산한다. 
+
+
  
  */
 int main() {
-	int curHour , curMin , cookingTime , hourMin = 0;
+	int curHour , curMin , cookingTime , cookingTime= 0;    
     scanf("%d %d",&curHour,&curMin);
     scanf("%d",&cookingTime);
 
     if(0<=curHour<=23 && 0<=curMin<=59 && 0<=cookingTime<=1000) 
     {
-        hourMin = curHour*3600 + curMin * 60 + cookingTime;
-        curHour = hourMin / 3600;
-        curMin = hourMin % 3600 / 60;
+        curHour = curHour * 3600;
+        curMin = curMin * 60;
+        cookingTime = cookingTime * 60;
 
-        if(curHour == 24)
-            curHour = 0;
-        
-        if(curMin == 0)
-            curMin = 0;
+        cookingTime = curHour + curMin + cookingTime;
+        printf("cookingTime : %d \n",cookingTime);
+        curHour = cookingTime / 3600;
+        curMin = cookingTime / 3600 % 60;
         
         printf("%d %d",curHour,curMin);
     }    
